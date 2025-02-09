@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sentiment Analyzer</title>
+  <link rel="stylesheet" href="../static/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <img src="../static/logo.png" alt="Senti Logo" class="logo">
+    <a href="/about" class="more-button">Learn About Our Calculation Process</a> <!-- Add the about button -->
+
+    <div class="input-area">
+      <label for="searchTerm">Enter a word, person, brand or topic:</label>
+      <input type="text" id="searchTerm" placeholder="e.g., AI, Coca Cola">
+      <button class="more-button" onclick="analyzeSentiment()">Analyze</button>
+    </div>
+    <div class="result-area">
+      <p id="sentimentScore">Sentiment Score: -</p>
+      <div class="slider-container">
+        <input type="range" min="0" max="100" value="50" class="slider" id="sentimentSlider" disabled>
+      </div>
+      <p id="llmOutput"></p> <!-- Add this element to display LLM output -->
+    </div>
+  </div>
+
+  <script>
+    async function analyzeSentiment() {
+      const searchTerm = document.getElementById("searchTerm").value;
+      const response = await fetch('/analyze', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: `text=${searchTerm}`
+      });
+
+      const data = await response.json();
+      document.getElementById("sentimentScore").textContent = "Sentiment Score: " + data.score;
+      document.getElementById("sentimentSlider").value = data.score; // Set the slider value
+      document.getElementById("llmOutput").textContent = data.llm_output; //set the text content
+    }
+  </script>
+</body>
+</html>

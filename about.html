@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>About Our Sentiment Analysis</title>
+  <link rel="stylesheet" href="../static/style.css"> <!-- Link to your existing stylesheet -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <img src="../static/logo.png" alt="Senti Logo" class="logo">
+
+    <section class="about-section">
+      <h2>How Our Sentiment Analysis Works</h2>
+      <p>
+        Our sentiment analysis tool combines information to get the most accurate and up-to-date analysis.
+      </p>
+
+      <ol class="workflow">
+        <li>
+          <strong>Gathering Reddit Data:</strong> We collect 50 recent posts from Reddit related to your search term to gauge public opinion.
+        </li>
+        <li>
+          <strong>Analyzing Reddit Post Titles:</strong> We analyse the titles of recent posts, using TF-IDF vectorizer (to account for relevance), stop word removal (filtering meaningless words), and exclude neutral scores (to reduce noise) to refine the analysis.
+        </li>
+        <li>
+          <strong>LLM-Based Analysis (Gemini):</strong> We also use Gemini to consider historical significance, recent events, and public perception from both social and corporate standpoints.
+        </li>
+        <li>
+          <strong>Combining Scores:</strong> The final sentiment score is a weighted average of the Reddit-based model's score and the LLM-based score. By default, we give each component equal weight (50/50).
+        </li>
+      </ol>
+
+    </section>
+
+    <hr class="section-divider">
+
+    <section class="about-section">
+      <h2>Examples</h2>
+      <div class="example">
+        <strong>Coca-Cola:</strong> Score ≈ 55. Despite its popularity, there are considerations to factor in like health concerns from its sugary composition.
+      </div>
+      <div class="example">
+        <strong>NVIDIA:</strong> Score ≈ 62. A major player in graphics and AI, generally viewed favorably, but subject to market volatility and supply chain concerns.
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <section class="about-section">
+      <h2>Uncertainty and Limitations</h2>
+      <p>
+        Sentiment analysis is inherently uncertain. Public sentiment changes over time due to news events, social trends, and other factors. Our tool provides a snapshot of sentiment based on recent data.
+      </p>
+      <p>
+        Additionally, our model is not perfect. Sentiment is nuanced. We do our best to provide results that reflect the real world, but it isn't always certain.
+      </p>
+    </section>
+    
+    <a href="/" class="more-button">Back to Sentiment Analysis</a> <!-- Add the back button -->
+
+  </div>
+</body>
+</html>
